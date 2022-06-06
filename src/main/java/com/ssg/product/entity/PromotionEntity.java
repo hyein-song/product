@@ -36,11 +36,11 @@ public class PromotionEntity {
     @Column(name="DiscountRate")
     private Double discountRate;
 
-    @Column(name="PromotionStartDate")
-    private LocalDate itemDisplayStartDate;
-    @Column(name="PromotionEndDate")
-    private LocalDate itemDisplayEndDate;
+    @Column(name="promotionStartDate")
+    private LocalDate promotionStartDate;
+    @Column(name="promotionEndDate")
+    private LocalDate promotionEndDate;
 
-    @OneToMany(mappedBy = "promotionEntity")
-    private List<ItemEntity> itemEntities = new ArrayList<>();
+//    @OneToMany(mappedBy = "promotionEntity")
+//    private List<ItemEntity> itemEntities = new ArrayList<>();
 }
