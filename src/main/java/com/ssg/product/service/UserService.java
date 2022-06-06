@@ -1,13 +1,13 @@
 package com.ssg.product.service;
 
 import com.ssg.product.entity.UserEntity;
-import com.ssg.product.payload.dto.ResponseDTO;
 import com.ssg.product.payload.request.UserInsertRequest;
 import com.ssg.product.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    @Transactional
     public ResponseEntity<String> userInsert(UserInsertRequest userInsertRequest){
         if (userRepository.findByUserNameAndUserType(userInsertRequest.getUserName(), userInsertRequest.getUserType()).isPresent()){
             throw new IllegalStateException("해당 이름과 타입의 유저가 존재합니다.");
