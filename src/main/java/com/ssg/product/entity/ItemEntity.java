@@ -22,15 +22,22 @@ import java.time.LocalDate;
 public class ItemEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ItemId")
     private Long id;
 
+    @Column(name="ItemName")
     private String itemName;
 
+    @Column(name="ItemType")
     private String itemType;
 
+    @Column(name="ItemPrice")
     private Long itemPrice;
 
+    @Column(name="ItemDisplayStartDate")
     private LocalDate itemDisplayStartDate;
+    @Column(name="ItemDisplayEndDate")
     private LocalDate itemDisplayEndDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

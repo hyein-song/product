@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,12 +20,18 @@ import javax.persistence.Table;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="UserId")
     private Long id;
 
+    @Column(name="UserName")
     private String userName;
 
-    private String userType; // enum으로 변경
+    @Column(name="UserType")
+    private String userType;
 
-    private String userState; // enum으로 변경
+    @Column(name="UserStat")
+    private String userStat;
+
 
 }

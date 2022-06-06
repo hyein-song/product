@@ -23,15 +23,22 @@ import java.util.List;
 public class PromotionEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="PromotionId")
     private Long id;
 
+    @Column(name="PromotionNm")
     private String promotionNm;
 
+    @Column(name="DiscountAmount")
     private Long discountAmount;
 
+    @Column(name="DiscountRate")
     private Double discountRate;
 
+    @Column(name="PromotionStartDate")
     private LocalDate itemDisplayStartDate;
+    @Column(name="PromotionEndDate")
     private LocalDate itemDisplayEndDate;
 
     @OneToMany(mappedBy = "promotionEntity")
