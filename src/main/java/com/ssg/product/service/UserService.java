@@ -33,4 +33,13 @@ public class UserService {
         return new ResponseEntity<String>("회원가입 성공", HttpStatus.OK);
 
     }
+
+    public ResponseEntity<String> userDelete(Long user_id){
+        UserEntity user = userRepository.findById(user_id).orElseThrow(()-> new NullPointerException("해당 유저가 존재하지 않습니다."));
+
+        user.changeUserStat();
+        userRepository.save(user);
+
+        return new ResponseEntity<String>("회원 탈퇴 성공", HttpStatus.OK);
+    }
 }

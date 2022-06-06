@@ -33,5 +33,8 @@ public class UserEntity {
     @Column(name="UserStat")
     private String userStat;
 
+    public void changeUserStat(){
+        this.userStat = "탈퇴";
+    }
 
 }
