@@ -43,4 +43,15 @@ public class ItemEntity {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="promotion_id")
 //    private PromotionEntity promotionEntity;
+
+    public boolean checkDisplayDate(){
+
+        LocalDate now = LocalDate.now();
+        LocalDate startDate = this.getItemDisplayStartDate();
+        LocalDate endDate = this.getItemDisplayEndDate();
+
+        if (now.isEqual(startDate) || now.isAfter(startDate) || now.isEqual(endDate) || now.isBefore(endDate)) {
+            return true;
+        } else return false;
+    }
 }
