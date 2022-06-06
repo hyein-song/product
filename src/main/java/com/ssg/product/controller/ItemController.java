@@ -4,10 +4,7 @@ import com.ssg.product.payload.request.ItemInsertRequest;
 import com.ssg.product.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,5 +16,10 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<String> itemInsert(@RequestBody ItemInsertRequest itemInsertRequest){
         return itemService.itemInsert(itemInsertRequest);
+    }
+
+    @DeleteMapping("/delete/{item_id}")
+    public ResponseEntity<String> itemDelete(@PathVariable Long item_id){
+        return itemService.itemDelete(item_id);
     }
 }

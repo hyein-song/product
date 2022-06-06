@@ -40,7 +40,7 @@ public class ItemEntity {
     @Column(name="ItemDisplayEndDate")
     private LocalDate itemDisplayEndDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="promotion_id")
-    private PromotionEntity promotionEntity;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="promotion_id")
+//    private PromotionEntity promotionEntity;
 }

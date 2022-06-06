@@ -1,6 +1,7 @@
 package com.ssg.product.service;
 
 import com.ssg.product.entity.ItemEntity;
+import com.ssg.product.entity.PromotionEntity;
 import com.ssg.product.payload.request.ItemInsertRequest;
 import com.ssg.product.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,16 @@ public class ItemService {
         itemRepository.save(itemEntity);
 
         return new ResponseEntity<String>("상품 등록이 완료되었습니다.", HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<String> itemDelete(Long item_id){
+
+        ItemEntity itemEntity = itemRepository.findById(item_id).orElseThrow(()->
+                new NullPointerException("해당 id를 가진 상품 정보를 찾지 못했습니다."));
+
+        itemRepository.delete(itemEntity);
+
+        return new ResponseEntity<String>("상품 정보 삭제 완료",HttpStatus.OK);
     }
 }
