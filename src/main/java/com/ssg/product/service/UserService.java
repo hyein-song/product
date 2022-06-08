@@ -21,7 +21,6 @@ public class UserService {
             throw new IllegalStateException("해당 이름과 타입의 유저가 존재합니다.");
         }
 
-        
         UserEntity user = UserEntity.builder()
                 .userName(userInsertRequest.getUserName())
                 .userType(userInsertRequest.getUserType())
@@ -30,7 +29,7 @@ public class UserService {
 
         userRepository.save(user);
 
-        return new ResponseEntity<String>("회원가입 성공", HttpStatus.OK);
+        return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
 
     }
 
@@ -40,6 +39,6 @@ public class UserService {
         user.changeUserStat();
         userRepository.save(user);
 
-        return new ResponseEntity<String>("회원 탈퇴 성공", HttpStatus.OK);
+        return new ResponseEntity<>("회원 탈퇴 성공", HttpStatus.OK);
     }
 }

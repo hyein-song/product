@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface PromotionItemRepository extends JpaRepository<PromotionItemEntity, Long> {
 
-//    List<PromotionItemEntity> findAllByItem(ItemEntity item);
-
     @Query("select p from PromotionItemEntity p where p.item = ?1 and p.promotion.promotionStartDate <= ?2 and p.promotion.promotionEndDate >= ?3")
     List<PromotionItemEntity> findByItemAndPromotionStartDateLessThanEqualAndPromotionEndDateGreaterThanEqual(ItemEntity item, LocalDate startDate, LocalDate endDate);
 }

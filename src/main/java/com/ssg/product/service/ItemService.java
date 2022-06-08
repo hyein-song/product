@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,7 @@ public class ItemService {
 
         itemRepository.save(itemEntity);
 
-        return new ResponseEntity<String>("상품 등록이 완료되었습니다.", HttpStatus.OK);
+        return new ResponseEntity<>("상품 등록이 완료되었습니다.", HttpStatus.OK);
     }
 
     @Transactional
@@ -51,7 +50,7 @@ public class ItemService {
 
         itemRepository.delete(itemEntity);
 
-        return new ResponseEntity<String>("상품 정보 삭제 완료",HttpStatus.OK);
+        return new ResponseEntity<>("상품 정보 삭제 완료",HttpStatus.OK);
     }
 
     @Transactional

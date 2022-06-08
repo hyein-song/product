@@ -5,7 +5,6 @@ import com.ssg.product.payload.request.PromotionInsertRequest;
 import com.ssg.product.payload.request.PromotionItemInsertRequest;
 import com.ssg.product.payload.response.PromotionItemResponse;
 import com.ssg.product.service.PromotionService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

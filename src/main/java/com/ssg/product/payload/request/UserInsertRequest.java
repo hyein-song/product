@@ -3,7 +3,6 @@ package com.ssg.product.payload.request;
 import com.ssg.product.entity.value.UserType;
 import lombok.Getter;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 @Getter
