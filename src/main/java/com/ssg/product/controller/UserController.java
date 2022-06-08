@@ -20,7 +20,7 @@ public class UserController {
     }
 
     // 아예 삭제하는 API 필요?
-    @PutMapping("delete/{user_id}")
+    @PutMapping("/{user_id}")
     public ResponseEntity<String> userDelete(@PathVariable Long user_id){
         return userService.userDelete(user_id);
     }

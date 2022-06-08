@@ -1,5 +1,8 @@
 package com.ssg.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.ssg.product.entity.value.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +13,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,7 +35,8 @@ public class ItemEntity {
     private String itemName;
 
     @Column(name="ItemType")
-    private String itemType;
+    @Enumerated(EnumType.STRING)
+    private ItemType itemType;
 
     @Column(name="ItemPrice")
     private Long itemPrice;
@@ -40,18 +46,8 @@ public class ItemEntity {
     @Column(name="ItemDisplayEndDate")
     private LocalDate itemDisplayEndDate;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="promotion_id")
-//    private PromotionEntity promotionEntity;
+    @OneToMany(mappedBy = "item")
+    @JsonIgnore
+    private List<PromotionItemEntity> promotionEntities= new ArrayList<>();
 
-    public boolean checkDisplayDate(){
-
-        LocalDate now = LocalDate.now();
-        LocalDate startDate = this.getItemDisplayStartDate();
-        LocalDate endDate = this.getItemDisplayEndDate();
-
-        if (now.isEqual(startDate) || now.isAfter(startDate) || now.isEqual(endDate) || now.isBefore(endDate)) {
-            return true;
-        } else return false;
-    }
 }

@@ -1,5 +1,7 @@
 package com.ssg.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +43,7 @@ public class PromotionEntity {
     @Column(name="promotionEndDate")
     private LocalDate promotionEndDate;
 
-//    @OneToMany(mappedBy = "promotionEntity")
-//    private List<ItemEntity> itemEntities = new ArrayList<>();
+    @OneToMany(mappedBy = "promotion")
+    @JsonIgnore
+    private List<PromotionItemEntity> itemEntities = new ArrayList<>();
 }

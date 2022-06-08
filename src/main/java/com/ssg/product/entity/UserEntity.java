@@ -1,5 +1,6 @@
 package com.ssg.product.entity;
 
+import com.ssg.product.entity.value.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +29,8 @@ public class UserEntity {
     private String userName;
 
     @Column(name="UserType")
-    private String userType;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     @Column(name="UserStat")
     private String userStat;

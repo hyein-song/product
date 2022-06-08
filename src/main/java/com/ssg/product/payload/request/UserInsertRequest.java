@@ -1,5 +1,6 @@
 package com.ssg.product.payload.request;
 
+import com.ssg.product.entity.value.UserType;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -12,5 +13,5 @@ public class UserInsertRequest {
     private String userName;
 
     @NotBlank
-    private String userType;
+    private UserType userType;
 }

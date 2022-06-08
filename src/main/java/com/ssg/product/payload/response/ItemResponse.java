@@ -2,6 +2,7 @@ package com.ssg.product.payload.response;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.ssg.product.entity.ItemEntity;
+import com.ssg.product.entity.value.ItemType;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class ItemResponse {
 
     private String itemName;
 
-    private String itemType;
+    private ItemType itemType;
 
     private Long itemPrice;
 

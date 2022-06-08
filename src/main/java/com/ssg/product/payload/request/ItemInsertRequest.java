@@ -1,5 +1,6 @@
 package com.ssg.product.payload.request;
 
+import com.ssg.product.entity.value.ItemType;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -12,7 +13,7 @@ public class ItemInsertRequest {
     private String itemName;
 
     @NotBlank
-    private String itemType;
+    private ItemType itemType;
 
     @NotBlank
     private Long itemPrice;

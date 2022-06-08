@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
-    List<ItemEntity> findByItemType(String itemType);
+    List<ItemEntity> findByItemDisplayStartDateLessThanEqualAndItemDisplayEndDateGreaterThanEqual(LocalDate startDate, LocalDate endDate);
 
 }

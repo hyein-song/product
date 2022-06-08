@@ -2,6 +2,8 @@ package com.ssg.product.service;
 
 import com.ssg.product.entity.ItemEntity;
 import com.ssg.product.entity.UserEntity;
+import com.ssg.product.entity.value.ItemType;
+import com.ssg.product.entity.value.UserType;
 import com.ssg.product.payload.request.ItemInsertRequest;
 import com.ssg.product.payload.request.ItemListRequest;
 import com.ssg.product.payload.response.ItemResponse;
@@ -13,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,20 +59,20 @@ public class ItemService {
         UserEntity user = userRepository.findByIdAndUserStat(request.getUserId(),"정상").orElseThrow(()->
                 new NullPointerException("해당 id를 가진 user가 존재하지 않거나, 탈퇴한 user입니다."));
 
-        // enum으로 변경 필요
-        String itemType = "";
-        if (user.getUserType().equals("일반")){
-            itemType = "일반";
-        } else{
-            itemType = "기업회원상품";
+        LocalDate nowDate = LocalDate.now();
+
+        List<ItemEntity> itemEntities = itemRepository.findByItemDisplayStartDateLessThanEqualAndItemDisplayEndDateGreaterThanEqual(nowDate,nowDate);
+
+        if (user.getUserType().equals(UserType.NORMAL)){
+            return itemEntities.stream()
+                    .filter(itemEntity -> itemEntity.getItemType().equals(ItemType.NORMAL))
+                    .map(itemEntity -> new ItemResponse().convertEntityToResponse(itemEntity))
+                    .collect(Collectors.toList());
+        } else {
+             return itemEntities.stream()
+                    .map(itemEntity -> new ItemResponse().convertEntityToResponse(itemEntity))
+                    .collect(Collectors.toList());
         }
-
-        // 기간, item type
-        List<ItemEntity> itemEntities = itemRepository.findByItemType(itemType);
-
-        return itemEntities.stream()
-                .filter(ItemEntity::checkDisplayDate)
-                .map(itemEntity -> new ItemResponse().convertEntityToResponse(itemEntity))
-                .collect(Collectors.toList());
     }
+
 }

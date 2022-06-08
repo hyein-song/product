@@ -22,7 +22,7 @@ public class ItemController {
         return itemService.itemInsert(itemInsertRequest);
     }
 
-    @DeleteMapping("/delete/{item_id}")
+    @DeleteMapping("/{item_id}")
     public ResponseEntity<String> itemDelete(@PathVariable Long item_id){
         return itemService.itemDelete(item_id);
     }
