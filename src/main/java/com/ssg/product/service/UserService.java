@@ -33,8 +33,8 @@ public class UserService {
 
     }
 
-    public ResponseEntity<String> userDelete(Long user_id){
-        UserEntity user = userRepository.findById(user_id).orElseThrow(()-> new NullPointerException("해당 유저가 존재하지 않습니다."));
+    public ResponseEntity<String> userDelete(Long userId){
+        UserEntity user = userRepository.findById(userId).orElseThrow(()-> new NullPointerException("해당 유저가 존재하지 않습니다."));
 
         user.changeUserStat();
         userRepository.save(user);

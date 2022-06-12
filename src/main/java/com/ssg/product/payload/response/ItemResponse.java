@@ -1,13 +1,14 @@
 package com.ssg.product.payload.response;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ssg.product.entity.ItemEntity;
 import com.ssg.product.entity.value.ItemType;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +21,9 @@ public class ItemResponse {
 
     private Long itemPrice;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDisplayStartDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDisplayEndDate;
 
     public ItemResponse convertEntityToResponse(ItemEntity item){

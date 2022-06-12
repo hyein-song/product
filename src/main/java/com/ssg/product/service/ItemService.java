@@ -5,7 +5,6 @@ import com.ssg.product.entity.UserEntity;
 import com.ssg.product.entity.value.ItemType;
 import com.ssg.product.entity.value.UserType;
 import com.ssg.product.payload.request.ItemInsertRequest;
-import com.ssg.product.payload.request.ItemListRequest;
 import com.ssg.product.payload.response.ItemResponse;
 import com.ssg.product.repository.ItemRepository;
 import com.ssg.product.repository.UserRepository;
@@ -39,13 +38,13 @@ public class ItemService {
 
         itemRepository.save(itemEntity);
 
-        return new ResponseEntity<>("상품 등록이 완료되었습니다.", HttpStatus.OK);
+        return new ResponseEntity<>("상품 등록 완료", HttpStatus.OK);
     }
 
     @Transactional
-    public ResponseEntity<String> itemDelete(Long item_id){
+    public ResponseEntity<String> itemDelete(Long itemId){
 
-        ItemEntity itemEntity = itemRepository.findById(item_id).orElseThrow(()->
+        ItemEntity itemEntity = itemRepository.findById(itemId).orElseThrow(()->
                 new NullPointerException("해당 id를 가진 상품 정보를 찾지 못했습니다."));
 
         itemRepository.delete(itemEntity);
@@ -54,8 +53,8 @@ public class ItemService {
     }
 
     @Transactional
-    public List<ItemResponse> itemList(ItemListRequest request){
-        UserEntity user = userRepository.findByIdAndUserStat(request.getUserId(),"정상").orElseThrow(()->
+    public List<ItemResponse> itemList(Long userId){
+        UserEntity user = userRepository.findByIdAndUserStat(userId,"정상").orElseThrow(()->
                 new NullPointerException("해당 id를 가진 user가 존재하지 않거나, 탈퇴한 user입니다."));
 
         LocalDate nowDate = LocalDate.now();

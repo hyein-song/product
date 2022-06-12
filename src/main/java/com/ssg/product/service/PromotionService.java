@@ -48,9 +48,9 @@ public class PromotionService {
     }
 
     @Transactional
-    public ResponseEntity<String> promotionDelete(Long promotion_id){
+    public ResponseEntity<String> promotionDelete(Long promotionId){
 
-        PromotionEntity promotionEntity = promotionRepository.findById(promotion_id).orElseThrow(()->
+        PromotionEntity promotionEntity = promotionRepository.findById(promotionId).orElseThrow(()->
                 new NullPointerException("해당 id를 가진 프로모션 정보를 찾지 못했습니다."));
 
         promotionRepository.delete(promotionEntity);
@@ -74,8 +74,8 @@ public class PromotionService {
         return new ResponseEntity<>("프로모션상품 등록 완료",HttpStatus.OK);
     }
 
-    public PromotionItemResponse promotionItemInformation(Long item_id){
-        ItemEntity item = itemRepository.findById(item_id).orElseThrow(()->
+    public PromotionItemResponse promotionItemInformation(Long itemId){
+        ItemEntity item = itemRepository.findById(itemId).orElseThrow(()->
                 new NullPointerException("해당 id를 가진 상품 정보를 찾지 못했습니다."));
 
         LocalDate nowDate = LocalDate.now();

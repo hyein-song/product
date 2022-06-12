@@ -1,5 +1,6 @@
 package com.ssg.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,8 +39,11 @@ public class PromotionEntity {
     private Double discountRate;
 
     @Column(name="promotionStartDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate promotionStartDate;
+
     @Column(name="promotionEndDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate promotionEndDate;
 
     @OneToMany(mappedBy = "promotion")

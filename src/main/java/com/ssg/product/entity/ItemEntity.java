@@ -1,5 +1,6 @@
 package com.ssg.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssg.product.entity.value.ItemType;
 import lombok.AllArgsConstructor;
@@ -40,8 +41,12 @@ public class ItemEntity {
     private Long itemPrice;
 
     @Column(name="ItemDisplayStartDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDisplayStartDate;
+
+
     @Column(name="ItemDisplayEndDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDisplayEndDate;
 
     @OneToMany(mappedBy = "item")

@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/promotion")
@@ -17,25 +19,25 @@ public class PromotionController {
     private final PromotionService promotionService;
 
     @PostMapping
-    public ResponseEntity<String> promotionInsert(@RequestBody PromotionInsertRequest promotionInsertRequest){
+    public ResponseEntity<String> promotionInsert(@RequestBody @Valid PromotionInsertRequest promotionInsertRequest){
         return promotionService.promotionInsert(promotionInsertRequest);
 
     }
 
-    @DeleteMapping("/{promotion_id}")
-    public ResponseEntity<String> promotionDelete(@PathVariable Long promotion_id){
+    @DeleteMapping("/{promotionId}")
+    public ResponseEntity<String> promotionDelete(@PathVariable Long promotionId){
 
-        return promotionService.promotionDelete(promotion_id);
+        return promotionService.promotionDelete(promotionId);
     }
 
     @PostMapping("/item")
-    public ResponseEntity<String> promotionItemInsert(@RequestBody PromotionItemInsertRequest request){
+    public ResponseEntity<String> promotionItemInsert(@RequestBody @Valid PromotionItemInsertRequest request){
         return promotionService.promotionItemInsert(request);
     }
 
     @GetMapping("/item")
-    public PromotionItemResponse promotionItemInformation(@RequestParam Long item_id){
-        return promotionService.promotionItemInformation(item_id);
+    public PromotionItemResponse promotionItemInformation(@RequestParam Long itemId){
+        return promotionService.promotionItemInformation(itemId);
     }
 
 }

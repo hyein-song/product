@@ -4,13 +4,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.ssg.product.entity.ItemEntity;
 import com.ssg.product.entity.PromotionEntity;
 import com.ssg.product.entity.PromotionItemEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

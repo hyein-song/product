@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -15,13 +17,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<String> userInsert(@RequestBody UserInsertRequest userInsertRequest){
+    public ResponseEntity<String> userInsert(@RequestBody @Valid UserInsertRequest userInsertRequest){
         return userService.userInsert(userInsertRequest);
     }
 
     // 아예 삭제하는 API 필요?
-    @PutMapping("/{user_id}")
-    public ResponseEntity<String> userDelete(@PathVariable Long user_id){
-        return userService.userDelete(user_id);
+    @PutMapping("/{userId}")
+    public ResponseEntity<String> userDelete(@PathVariable Long userId){
+        return userService.userDelete(userId);
     }
 }

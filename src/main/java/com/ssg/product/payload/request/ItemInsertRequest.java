@@ -1,26 +1,36 @@
 package com.ssg.product.payload.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ssg.product.entity.value.ItemType;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Getter
+@Data
+@Builder
 public class ItemInsertRequest {
 
     @NotBlank
     private String itemName;
 
-    @NotBlank
+    @NotNull
     private ItemType itemType;
 
-    @NotBlank
+    @NotNull
+    @Min(0)
     private Long itemPrice;
 
-    @NotBlank
+
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDisplayStartDate;
-    @NotBlank
+
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDisplayEndDate;
 
 }

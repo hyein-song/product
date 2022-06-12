@@ -1,12 +1,16 @@
 package com.ssg.product.payload.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 
 @Getter
+@Builder
 public class PromotionInsertRequest {
 
     @NotBlank
@@ -16,9 +20,12 @@ public class PromotionInsertRequest {
 
     private Double discountRate;
 
-    @NotBlank
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate promotionStartDate;
-    @NotBlank
+
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate promotionEndDate;
 
 }
